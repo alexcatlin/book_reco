@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Book Recommendation System</h1>
+    <form action="/content" method="post">
+        <h2>Content-Based Recommendation</h2>
+        <label for="title">Enter a book title:</label>
+        <input type="text" id="title" name="title">
+        <button type="submit">Get Recommendations</button>
+    </form>
+    <form action="/collaborative" method="post">
+        <h2>Collaborative Filtering Recommendation</h2>
+        <label for="user_id">Enter your user ID:</label>
+        <input type="text" id="user_id" name="user_id">
+        <button type="submit">Get Recommendations</button>
+    </form>
+    <form action="/rag" method="post">
+        <h2>RAG Enhanced Recommendation</h2>
+        <label for="query">Enter your query:</label>
+        <input type="text" id="query" name="query">
+        <button type="submit">Get Recommendations</button>
+    </form>
+    <form action="/vector" method="post">
+        <h2>Vector-Based Recommendation</h2>
+        <label for="description">Enter a book description:</label>
+        <input type="text" id="description" name="description">
+        <button type="submit">Get Recommendations</button>
+    </form>
+</body>
+</html>

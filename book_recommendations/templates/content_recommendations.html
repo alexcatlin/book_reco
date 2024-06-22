@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Content-Based Recommendations</title>
+</head>
+<body>
+    <h1>Content-Based Recommendations for "{{ title }}"</h1>
+    {% if recommendations.empty %}
+        <p>No recommendations found. Please try another title.</p>
+    {% else %}
+        <ul>
+            {% for _, row in recommendations.iterrows() %}
+                <li>{{ row['title'] }} by {{ row['authors'] }} (Rating: {{ row['average_rating'] }}) 
+                {% if row['average_sentiment'] %}
+                    - Sentiment: {{ row['average_sentiment'] }}
+                {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="/">Back to Home</a>
+</body>
+</html>

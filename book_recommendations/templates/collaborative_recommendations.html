@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Collaborative Filtering Recommendations</title>
+</head>
+<body>
+    <h1>Collaborative Filtering Recommendations for User {{ user_id }}</h1>
+    {% if not recommendations %}
+        <p>No recommendations found. Please try another user ID.</p>
+    {% else %}
+        <ul>
+            {% for book in recommendations %}
+                <li>{{ book['title'] }} by {{ book['authors'] }} (Rating: {{ book['average_rating'] }}) 
+                {% if book['average_sentiment'] %}
+                    - Sentiment: {{ book['average_sentiment'] }}
+                {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="/">Back to Home</a>
+</body>
+</html>
