@@ -7,6 +7,7 @@ from models.content_based import get_content_based_recommendations
 from models.rag_model import rag_recommendation
 from models.reviews import get_average_sentiment
 from models.vector_db import create_faiss_index, query_faiss_index
+from models.pinecone_rag import query_pinecone
 from myapp.cleansedata import cleansedata, mergedata
 from utils import fileexists
 print ("line 12")
@@ -96,6 +97,19 @@ def rag_recommendations():
 def vector_recommendations():
     description = request.form["description"]
     recommendations = query_faiss_index(description, faiss_index, merged_books_df)
+    return render_template(
+        "vector_recommendations.html",
+        description=description,
+        recommendations=recommendations,
+    )
+
+
+
+@app.route("/rag-test", methods=["POST"])
+def vector_recommendations():
+    description = request.form["description"]
+
+    recommendations = query_pinecone(description)
     return render_template(
         "vector_recommendations.html",
         description=description,
